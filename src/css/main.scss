@@ -90,10 +90,11 @@ img {
 }
 /*Header*/
 .header {
-  background-image: url('/dist/img/bg-img.png'),url('/dist/img/bg-foto.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover;
-  background-position: center center;
+  background: url('../../dist/img/bg-full.png') 50%/cover no-repeat;
+  // background-image: url('/dist/img/bg-img.png'),url('/dist/img/bg-foto.png');
+  // background-repeat: no-repeat, no-repeat;
+  // background-size: cover;
+  // background-position: center center;
 }
 .header__h1 {
   padding-top: 175px;
