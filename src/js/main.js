@@ -4,16 +4,11 @@
 /*Загрузка документа адаптация блока Story*/
 window.addEventListener('DOMContentLoaded', () => {
    adaptStoryFrame();
-})
+}, false)
 /*Изменение размера окна адаптация блока Story*/
 window.addEventListener('resize', () => {
    adaptStoryFrame();
-})
-/*Завершение медиафайла*/
-// video.addEventListener(ended, () => {
-//    console.log('midia-ended');
-// })
-
+}, false)
 
 /*Запуск видеофрагмента блока Story при нажатии на кнопку "play"*/
 let elemPlay = document.querySelector('.video__a__play')
@@ -52,18 +47,11 @@ function adaptStoryFrame() {
 
    
    if (videoFrame.dataset.video == 1) { 
-      // let video = document.getElementsByTagName('video');
-      // console.log(video);
-      // video = video[0];
-      // console.log(video);
-      // console.log(video.getAttribute(attributeName));
-      // video.setAttribute(width, widthFrame); 
-      // video.setAttribute(height, heightFrame); 
-      // }
-
       videoFrame.innerHTML = `
       <video id="video" autoplay controls width='${widthFrame}' height='${heightFrame}' src="../dist/video/HistoricalDrawings.mp4"></video>;
       `;
+      endVideo();
+      
    }
 }
    
@@ -71,26 +59,26 @@ function adaptStoryFrame() {
 function videoPlay () {
    const videoFrame = document.querySelector('.video-place');
    videoFrame.dataset.video = 1
-   // videoFrame.innerHTML = `
-   //    <video id="video" autoplay controls width='896' height='516' src="../dist/video/HistoricalDrawings.mp4"></video>;
-   //    `;
    adaptStoryFrame();
 }
 
-
-/*Закрытие видеофрагмента по щелчку вне видео*/
-// document.querySelector('body').onclick = function(e) {
-//    const videoFrame = document.querySelector('.video-place');
-//    if ((+videoFrame.dataset.video == 1)&&(e.target!=videoFrame)) {
-//       videoFrame.innerHTML = `
-//       <div class="video__a">
-//          <a href="#!" class="video__a__play">
-//             <i class="icon-play-circled2"></i>
-//          </a>    
-//       </div>
-//       `;
-//    }
-// }
-
+/*Завершение видео, востановление исходного вида */
+function endVideo() { 
+   let video = document.getElementsByTagName('video');
+   const videoFrame = document.querySelector('.video-place');
+   video = video[0];
+   console.log(video);
+   video.addEventListener('ended', function() {
+      video.remove();
+      videoFrame.innerHTML = `
+         <div class="video__a">
+            <a href="#!" class="video__a__play">
+               <i class="icon-play-circled2"></i>
+            </a>    
+         </div>
+   `;
+   videoFrame.dataset.video = 0
+   }, false)
+}
 
  
