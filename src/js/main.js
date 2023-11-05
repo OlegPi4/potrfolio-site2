@@ -83,7 +83,7 @@ function endVideo() {
          </div>
       `;
       videoFrame.style.cssText += `
-         background: url('../../dist/img/story-img.png') 50%/cover no-repeat;
+         background: url('../img/story-img.png') 50%/cover no-repeat;
         `; 
    videoFrame.dataset.video = 0
    }, false)
