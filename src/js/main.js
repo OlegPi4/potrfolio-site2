@@ -56,6 +56,7 @@ function adaptStoryFrame() {
       videoFrame.style.cssText += `
         width: ${widthFrameStr};
         height: ${heightFrameStr};
+        background: url('../dist/img/story-img.png') 50%/cover no-repeat;
        `;   
    }
 
