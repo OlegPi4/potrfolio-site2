@@ -11,14 +11,15 @@ window.addEventListener('resize', () => {
 }, false)
 
 /*Запуск видеофрагмента блока Story при нажатии на кнопку "play"*/
-let elemPlay = document.querySelector('.video__a__play')
+
+let elemPlay = document.querySelector('.video__a')
+
 elemPlay.addEventListener('click', videoPlay)
 /*Запуск видеофрагмента блока Story при нажатии на кнопку "lets get started"*/
 let elemButton = document.querySelector('.story__a')
 elemButton.addEventListener('click', videoPlay)   
 
 /*-----------Функции-------------*/
-
 
 /*Адаптация блока Story - видеофрагмента на изменение размера окна*/
 function adaptStoryFrame() {
@@ -39,20 +40,25 @@ function adaptStoryFrame() {
       widthFrameStr = widthFrame + 'px';
       heightFrameStr = heightFrame + 'px';
    }
-   
-   videoFrame.style.cssText += `
-      width: ${widthFrameStr};
-      height: ${heightFrameStr};
-      `;   
-
-   
+   /* Условие для адаптации при воспроизвелении видео и без.*/   
    if (videoFrame.dataset.video == 1) { 
+      videoFrame.style.cssText += `
+         width: ${widthFrameStr};
+         height: ${heightFrameStr};
+         background: url('');   
+         background-color: var(--background1);      
+      `;   
       videoFrame.innerHTML = `
       <video id="video" autoplay controls width='${widthFrame}' height='${heightFrame}' src="../dist/video/HistoricalDrawings.mp4"></video>;
       `;
       endVideo();
-      
+   } else {
+      videoFrame.style.cssText += `
+        width: ${widthFrameStr};
+        height: ${heightFrameStr};
+       `;   
    }
+
 }
    
  /*Запуск видеофрагмента блока Story*/
@@ -67,16 +73,18 @@ function endVideo() {
    let video = document.getElementsByTagName('video');
    const videoFrame = document.querySelector('.video-place');
    video = video[0];
-   console.log(video);
    video.addEventListener('ended', function() {
       video.remove();
       videoFrame.innerHTML = `
-         <div class="video__a">
+         <div class="video__a" name="a-play">
             <a href="#!" class="video__a__play">
                <i class="icon-play-circled2"></i>
             </a>    
          </div>
-   `;
+      `;
+      videoFrame.style.cssText += `
+         background: url('../../dist/img/story-img.png') 50%/cover no-repeat;
+        `; 
    videoFrame.dataset.video = 0
    }, false)
 }
