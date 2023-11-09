@@ -11,10 +11,7 @@ window.addEventListener('resize', () => {
 }, false)
 
 /*Запуск видеофрагмента блока Story при нажатии на кнопку "play"*/
-
-let elemPlay = document.querySelector('.video__a')
-
-elemPlay.addEventListener('click', videoPlay)
+eventPlay();
 /*Запуск видеофрагмента блока Story при нажатии на кнопку "lets get started"*/
 let elemButton = document.querySelector('.story__a')
 elemButton.addEventListener('click', videoPlay)   
@@ -70,10 +67,11 @@ function videoPlay () {
 }
 
 /*Завершение видео, востановление исходного вида */
-function endVideo() { 
+const endVideo = async() => { 
    let video = document.getElementsByTagName('video');
    const videoFrame = document.querySelector('.video-place');
    video = video[0];
+   /*Обработка события - завершения видео */
    video.addEventListener('ended', function() {
       video.remove();
       videoFrame.innerHTML = `
@@ -87,7 +85,15 @@ function endVideo() {
          background: url('../dist/img/story-img.png') 50%/cover no-repeat;
         `; 
    videoFrame.dataset.video = 0
+   eventPlay();
    }, false)
+   
 }
 
- 
+/*ставим обработчик на кнопку "Play"*/
+function eventPlay() {
+   let elemPlay = document.getElementsByClassName('video__a');
+   elemPlay=elemPlay[0];
+   elemPlay.addEventListener('click', videoPlay)
+}   
+

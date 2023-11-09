@@ -67,11 +67,7 @@ img {
   margin-right: 0px;
   padding: 13px 32px;
 }
-.menu__item-1:hover{
-  color: #fff;
-  background-color: var(--colorGreen);
-  border-radius: 5px;
-}
+
 .menu__item-1:last-child{
   margin-right: 0;
 }
@@ -79,15 +75,17 @@ img {
   display: flex;
   font-size: 20px;
   color: var(--color-black);
+  border-radius: 5px;
 }
 .menu__item-2{
   padding: 13px 50px;
 }
-.menu__item-2:hover{
+.menu__item-1:hover, .menu__item-2:hover {
   color: #fff;
   background-color: var(--colorGreen);
   border-radius: 5px;
 }
+
 /*Header*/
 .header {
   background-image: url('../img/bg-full.png');
